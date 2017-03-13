@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JustDrink</string>
+    <string name="ingredienti">Ingredienti</string>
+    <string name="istruzioni">Istruzioni</string>
+    <string name="grid">Griglia</string>
+    <string name="list">Lista</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_xxmicro"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/drink_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/drink_name"
+            style="@style/item_drink_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/drink_thumb"
+            android:layout_marginBottom="@dimen/spacing_micro"
+            android:layout_marginTop="@dimen/spacing_micro"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:ellipsize="end"
+            android:lines="1"
+            tools:text="Text" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

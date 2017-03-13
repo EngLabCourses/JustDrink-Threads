@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/detail_cocktail_image"
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        tools:background="#ededed" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/detail_cocktail_image"
+        android:background="@drawable/scrim_gradient" />
+
+    <TextView
+        android:id="@+id/detail_cocktail_info"
+        style="@style/detail_cocktail_desc_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/detail_cocktail_image"
+        android:layout_marginBottom="@dimen/spacing_micro"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        tools:text="Info" />
+
+    <TextView
+        android:id="@+id/label_ingredients"
+        style="@style/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_cocktail_image"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/ingredienti" />
+
+    <TextView
+        android:id="@+id/detail_cocktail_ingredients"
+        style="@style/detail_cocktail_ingredients_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_ingredients"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_micro" />
+
+    <TextView
+        android:id="@+id/label_instructions"
+        style="@style/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_cocktail_ingredients"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="@string/istruzioni" />
+
+    <TextView
+        android:id="@+id/detail_cocktail_instructions"
+        style="@style/detail_cocktail_instructions_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_instructions"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_micro" />
+</RelativeLayout>
