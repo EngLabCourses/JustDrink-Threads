@@ -41,29 +41,37 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
         } else {
 
             //TODO - ANR esempio
-/*            try {
-                Thread.sleep(20000);
-                Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
+            //anrExample();
 
             //TODO - Soluzione Thread
-/*            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(20000);
-                        Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();*/
+            //threadExample();
 
             Intent i = DetailActivity.getDetailIntent(this, drinkId);
             startActivity(i);
         }
+    }
+
+    private void anrExample() {
+        try {
+            Thread.sleep(20000);
+            Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void threadExample() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(20000);
+                    Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
