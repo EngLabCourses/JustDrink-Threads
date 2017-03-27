@@ -2,11 +2,13 @@ package it.englab.androidcourse.justdrink.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import it.englab.androidcourse.justdrink.R;
 import it.englab.androidcourse.justdrink.listeners.DrinkListener;
@@ -37,6 +39,28 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
         if (isHorizontal) {
             getFragmentManager().beginTransaction().replace(R.id.detail_container, DetailFragment.newInstance(drinkId)).commit();
         } else {
+
+            //TODO - ANR esempio
+/*            try {
+                Thread.sleep(20000);
+                Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
+
+            //TODO - Soluzione Thread
+/*            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(20000);
+                        Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();*/
+
             Intent i = DetailActivity.getDetailIntent(this, drinkId);
             startActivity(i);
         }
