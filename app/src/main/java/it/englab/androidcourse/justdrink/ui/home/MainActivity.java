@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
 
             //TODO - AsyncTask
             //asyncTaskExample();
+
+            //TODO - HandlerThread
+            handlerThreadExample();
         }
     }
 
@@ -102,6 +106,30 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
     private void asyncTaskExample() {
         myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute(10);
+    }
+
+    private void handlerThreadExample() {
+
+        HandlerThread handlerThread = new HandlerThread("Thread di Esempio", Thread.MAX_PRIORITY);
+        handlerThread.start();
+
+        Handler handler = new Handler(handlerThread.getLooper());
+
+        for(int i = 0; i < 30; i++) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, "Sto elaborando qualcosa...");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        handlerThread.quitSafely();
+        gotoDetails();
     }
 
     @Override
