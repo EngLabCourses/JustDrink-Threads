@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
             //asyncTaskExample();
 
             //TODO - HandlerThread
-            handlerThreadExample();
+            //handlerThreadExample();
         }
     }
 
