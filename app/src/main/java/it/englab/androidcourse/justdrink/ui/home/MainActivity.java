@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -90,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
     }
 
     private void threadExample() {
-        new Thread(new Runnable() {
+
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -101,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
+        thread.start();
     }
 
     private void asyncTaskExample() {
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
     private void handlerThreadExample() {
 
         //TODO - HandlerThread esempio 1
-/*        HandlerThread handlerThread = new HandlerThread("Thread di Esempio 1", Thread.MAX_PRIORITY);
+        HandlerThread handlerThread = new HandlerThread("Thread di Esempio 1");//, Process.THREAD_PRIORITY_BACKGROUND);
         handlerThread.start();
 
         Handler handler = new Handler(handlerThread.getLooper());
@@ -130,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
                 }
             });
         }
-        handlerThread.quitSafely();*/
+        handlerThread.quitSafely();
 
         //TODO - HandlerThread esempio 2
 /*        HandlerThread handlerThread = new MyHandlerThread("Thread di Esempio 2");
@@ -173,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
         protected String doInBackground(Integer... params) {
 
             Integer numOfLoops = params[0];
-
             for (int i = 0; i < numOfLoops; i++) {
                 try {
 
