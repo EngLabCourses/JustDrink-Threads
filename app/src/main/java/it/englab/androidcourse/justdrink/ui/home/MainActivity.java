@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import it.englab.androidcourse.justdrink.R;
 import it.englab.androidcourse.justdrink.listeners.DrinkListener;
+import it.englab.androidcourse.justdrink.threads.MyHandlerThread;
 import it.englab.androidcourse.justdrink.ui.detail.DetailActivity;
 import it.englab.androidcourse.justdrink.ui.detail.DetailFragment;
 
@@ -110,7 +111,8 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
 
     private void handlerThreadExample() {
 
-        HandlerThread handlerThread = new HandlerThread("Thread di Esempio", Thread.MAX_PRIORITY);
+        //TODO - HandlerThread esempio 1
+/*        HandlerThread handlerThread = new HandlerThread("Thread di Esempio 1", Thread.MAX_PRIORITY);
         handlerThread.start();
 
         Handler handler = new Handler(handlerThread.getLooper());
@@ -128,7 +130,13 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
                 }
             });
         }
-        handlerThread.quitSafely();
+        handlerThread.quitSafely();*/
+
+        //TODO - HandlerThread esempio 2
+/*        HandlerThread handlerThread = new MyHandlerThread("Thread di Esempio 2");
+        handlerThread.start();
+        handlerThread.quitSafely();*/
+
         gotoDetails();
     }
 
