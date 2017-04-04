@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
             //anrExample();
 
             //TODO - Soluzione Thread
-            //threadExample();
+            threadExample();
 
             //TODO - AsyncTask
             //asyncTaskExample();
