@@ -135,11 +135,6 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
         }
         handlerThread.quitSafely();
 
-        //TODO - HandlerThread esempio 2
-/*        HandlerThread handlerThread = new MyHandlerThread("Thread di Esempio 2");
-        handlerThread.start();
-        handlerThread.quitSafely();*/
-
         gotoDetails();
     }
 
