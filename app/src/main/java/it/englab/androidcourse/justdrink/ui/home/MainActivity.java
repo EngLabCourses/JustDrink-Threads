@@ -1,30 +1,20 @@
 package it.englab.androidcourse.justdrink.ui.home;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import it.englab.androidcourse.justdrink.R;
 import it.englab.androidcourse.justdrink.listeners.DrinkListener;
-import it.englab.androidcourse.justdrink.threads.MyHandlerThread;
 import it.englab.androidcourse.justdrink.ui.detail.DetailActivity;
 import it.englab.androidcourse.justdrink.ui.detail.DetailFragment;
 
 public class MainActivity extends AppCompatActivity implements DrinkListener {
 
-    private static final String TAG = MainActivity.class.getName();
-
-    private MyAsyncTask myAsyncTask;
     private boolean isHorizontal;
     private String drinkIdSelected;
 
@@ -45,14 +35,6 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
     }
 
     @Override
-    protected void onStop() {
-        if (myAsyncTask != null) {
-            myAsyncTask.cancel(true);
-        }
-        super.onStop();
-    }
-
-    @Override
     public void onDrinkClick(String drinkId) {
 
         drinkIdSelected = drinkId;
@@ -60,18 +42,7 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
         if (isHorizontal) {
             getFragmentManager().beginTransaction().replace(R.id.detail_container, DetailFragment.newInstance(drinkId)).commit();
         } else {
-
-            //TODO - ANR esempio
-            //anrExample();
-
-            //TODO - Soluzione Thread
-            threadExample();
-
-            //TODO - AsyncTask
-            //asyncTaskExample();
-
-            //TODO - HandlerThread
-            //handlerThreadExample();
+            gotoDetails();
         }
     }
 
@@ -80,63 +51,6 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
         startActivity(i);
     }
 
-    private void anrExample() {
-        try {
-            Thread.sleep(20000);
-            Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
-            gotoDetails();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void threadExample() {
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(20000);
-                    Toast.makeText(getApplicationContext(), "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
-                    gotoDetails();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        thread.start();
-    }
-
-    private void asyncTaskExample() {
-        myAsyncTask = new MyAsyncTask();
-        myAsyncTask.execute(10);
-    }
-
-    private void handlerThreadExample() {
-
-        //TODO - HandlerThread esempio 1
-        HandlerThread handlerThread = new HandlerThread("Thread di Esempio 1");//, Process.THREAD_PRIORITY_BACKGROUND);
-        handlerThread.start();
-
-        Handler handler = new Handler(handlerThread.getLooper());
-
-        for(int i = 0; i < 30; i++) {
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d(TAG, "Sto elaborando qualcosa...");
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-        handlerThread.quitSafely();
-
-        gotoDetails();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,50 +67,6 @@ public class MainActivity extends AppCompatActivity implements DrinkListener {
                 return false;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private class MyAsyncTask extends AsyncTask<Integer, Integer, String> {
-
-        @Override
-        protected void onPreExecute() {
-            Log.d(TAG, "onPreExecute");
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            Log.d(TAG, "Progress..." + values[0]);
-        }
-
-        @Override
-        protected String doInBackground(Integer... params) {
-
-            Integer numOfLoops = params[0];
-            for (int i = 0; i < numOfLoops; i++) {
-                try {
-
-                    Thread.sleep(1000);
-                    if (isCancelled()) break;
-                    publishProgress(i * 1000);
-
-                } catch (InterruptedException e) {
-                    Log.i(TAG, "Thread interrupted!");
-                }
-            }
-            return "ok";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            Toast.makeText(MainActivity.this, "Il nostro fantastico codice ha finito!", Toast.LENGTH_SHORT).show();
-            gotoDetails();
-            myAsyncTask = null;
-        }
-
-        @Override
-        protected void onCancelled() {
-            myAsyncTask = null;
-            super.onCancelled();
-        }
     }
 
 }
